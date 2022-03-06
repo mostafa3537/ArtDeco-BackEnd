@@ -59,7 +59,10 @@ const jobSchema = new mongoose.Schema(
         financialOffer: {
           type: Number,
         },
-        estimatedTime: Date,
+        estimitedTime: {
+          type: String,
+          required: [true, 'Please enter your estimited time!'],
+        },
         createdAt: {
           type: Date,
           default: Date.now(),
