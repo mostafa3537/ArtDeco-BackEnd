@@ -59,7 +59,7 @@ const jobSchema = new mongoose.Schema(
         financialOffer: {
           type: Number,
         },
-        estimitedTime: {
+        estimatedTime: {
           type: String,
           required: [true, 'Please enter your estimited time!'],
         },
