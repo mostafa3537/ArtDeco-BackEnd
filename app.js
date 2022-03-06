@@ -1,10 +1,12 @@
 const express = require('express');
 
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const compression = require('compression');
 
 const globalErrorHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -18,6 +20,7 @@ const app = express();
 // 1) Global middilware
 // Enable All CORS Requests
 app.use(cors());
+app.use(compression());
 
 // SET security HTTP header
 app.use(
@@ -28,7 +31,6 @@ app.use(
 );
 
 // Serving static files
-// app.use(express.static(`${__dirname}/public`));
 //static files
 app.use(express.static('puplic'));
 
@@ -36,6 +38,14 @@ app.use(express.static('puplic'));
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// Limit requests from same API
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
+});
+app.use('/api', limiter);
 
 // Boddy Parser, reading date from body to req.body
 app.use(express.json()); // express.json({limit : '10kb'})
