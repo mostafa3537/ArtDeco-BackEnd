@@ -110,6 +110,7 @@ exports.getMeOngoingJobs = catchAsync(async (req, res, next) => {
   console.log(ongoingJobs);
   res.status(200).json({
     status: 'success',
+    results: ongoingJobs.length,
     data: {
       ongoingJobs,
     },
