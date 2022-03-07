@@ -16,7 +16,12 @@ router.use(authController.protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
 
+//get me
 router.get('/getMe', userController.getMe);
+
+//get all ongoing jobs
+router.get('/getMeOngoingJobs', userController.getMeOngoingJobs);
+
 // router.get('/getMe', userController.getMe, userController.getUser);
 router.patch(
   '/updateMe',

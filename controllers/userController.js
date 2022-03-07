@@ -102,6 +102,20 @@ exports.getMe = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getMeOngoingJobs = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ _id: req.user.id });
+
+  const { jobs } = user;
+  const ongoingJobs = jobs.filter((job) => job.status === 'ongoing');
+  console.log(ongoingJobs);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      ongoingJobs,
+    },
+  });
+});
+
 exports.getUser = factory.getOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
