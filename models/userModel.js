@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'jobs',
-    select: 'headLine description budget totalProposal status ',
+    // select: 'headLine description budget totalProposal status location ',
   });
   next();
 });

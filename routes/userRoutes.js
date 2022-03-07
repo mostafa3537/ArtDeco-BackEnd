@@ -16,7 +16,8 @@ router.use(authController.protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
 
-router.get('/getMe', userController.getMe, userController.getUser);
+router.get('/getMe', userController.getMe);
+// router.get('/getMe', userController.getMe, userController.getUser);
 router.patch(
   '/updateMe',
   userController.uploadUserPhoto,
