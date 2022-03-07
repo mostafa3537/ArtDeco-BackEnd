@@ -4,6 +4,7 @@ const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
+const Job = require('../models/jobModel');
 
 const multerStorage = multer.memoryStorage();
 
@@ -102,7 +103,7 @@ exports.getMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getMeOngoingJobs = catchAsync(async (req, res, next) => {
+exports.getMyAllOngoingJobs = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ _id: req.user.id });
 
   const { jobs } = user;
@@ -113,6 +114,30 @@ exports.getMeOngoingJobs = catchAsync(async (req, res, next) => {
     results: ongoingJobs.length,
     data: {
       ongoingJobs,
+    },
+  });
+});
+
+//get a specific ongoing job
+exports.getMyOngoingJob = catchAsync(async (req, res, next) => {
+  // const user = await User.findOne({ _id: req.user.id });
+  // const job = await Job.findOne({ _id: req.params.id, user: req.user.id });
+
+  const currentJob = await Job.findOne({
+    _id: req.params.id,
+    user: req.user.id,
+    status: 'ongoing',
+  });
+
+  if (!currentJob) {
+    return next(new AppError('This job is not in ongoing status', 403));
+  }
+
+  console.log('job:', currentJob);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      currentJob,
     },
   });
 });
