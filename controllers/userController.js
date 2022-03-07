@@ -28,8 +28,11 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 
   const folderName = `img/users/user-${req.user.id}-${Date.now()}.jpeg`;
 
-  // req.file.filename = `${req.protocol}://localhost:8000/${folderName}`;
-  req.file.filename = `https://iti-art-deco.herokuapp.com/${folderName}`;
+  if (process.env.NODE_ENV === 'development') {
+    req.file.filename = `${req.protocol}://localhost:8000/${folderName}`;
+  } else if (process.env.NODE_ENV === 'production') {
+    req.file.filename = `https://iti-art-deco.herokuapp.com/${folderName}`;
+  }
 
   await sharp(req.file.buffer)
     .resize(500, 500)

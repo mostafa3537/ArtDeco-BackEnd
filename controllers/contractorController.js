@@ -35,7 +35,12 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
       req.contractor.id
     }-${Date.now()}`;
 
-    req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
+    if (process.env.NODE_ENV === 'development') {
+      req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
+    } else if (process.env.NODE_ENV === 'production') {
+      req.file.filename = `https://iti-art-deco.herokuapp.com/${folderName}`;
+    }
+
     await sharp(req.files.photo[0].buffer)
       .resize(500, 500)
       .toFormat('jpeg')
@@ -51,9 +56,21 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
     }-${Date.now()}`;
     await Promise.all(
       req.files.gallery.map(async (file, i) => {
-        const filename = `${req.protocol}://localhost:8000/${folderName}-${
-          i + 1
-        }.jpeg`;
+        if (process.env.NODE_ENV === 'development') {
+          const filename = `${req.protocol}://localhost:8000/${folderName}-${
+            i + 1
+          }.jpeg`;
+          req.body.gallery.push(filename);
+        } else if (process.env.NODE_ENV === 'production') {
+          const filename = `https://iti-art-deco.herokuapp.com/${folderName}-${
+            i + 1
+          }.jpeg`;
+          req.body.gallery.push(filename);
+        }
+
+        // const filename = `${req.protocol}://localhost:8000/${folderName}-${
+        //   i + 1
+        // }.jpeg`;
 
         await sharp(file.buffer)
           .resize(500, 500)
@@ -61,7 +78,7 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
           .jpeg({ quality: 90 })
           .toFile(`puplic/${folderName}-${i + 1}.jpeg`);
 
-        req.body.gallery.push(filename);
+        // req.body.gallery.push(filename);
       })
     );
   }

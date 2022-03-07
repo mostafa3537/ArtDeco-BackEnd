@@ -17,7 +17,8 @@ const contractorSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'http://localhost:8000/img/contractors/default.jpg',
+    // default: 'http://localhost:8000/img/contractors/default.jpg',
+    default: 'https://iti-art-deco.herokuapp.com/img/contractors/default.jpg',
   },
   phone: {
     type: String,
