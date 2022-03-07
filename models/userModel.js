@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     default: 'https://iti-art-deco.herokuapp.com/img/users/default.jpg',
   },
   phone: {
-    type: Number,
+    type: String,
   },
   address: {
     type: String,
