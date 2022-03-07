@@ -38,7 +38,7 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
       req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
     } else if (process.env.NODE_ENV === 'production') {
-      req.file.photo = `https://iti-art-deco.herokuapp.com/${folderName}`;
+      req.body.photo = `https://iti-art-deco.herokuapp.com/${folderName}`;
     }
 
     await sharp(req.files.photo[0].buffer)
