@@ -35,11 +35,11 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
       req.contractor.id
     }-${Date.now()}`;
 
-    // if (process.env.NODE_ENV === 'development') {
-    //   req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
-    // } else if (process.env.NODE_ENV === 'production') {
-    req.file.filename = `https://iti-art-deco.herokuapp.com/${folderName}`;
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
+    } else if (process.env.NODE_ENV === 'production') {
+      req.file.photo = `https://iti-art-deco.herokuapp.com/${folderName}`;
+    }
 
     await sharp(req.files.photo[0].buffer)
       .resize(500, 500)
