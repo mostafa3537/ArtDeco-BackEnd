@@ -128,7 +128,7 @@ contractorSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   return false;
 };
 
-//create temprory password and save it in passwordResetToken
+//create temprory password and save it in passwordResetToken..
 contractorSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString('hex');
 
