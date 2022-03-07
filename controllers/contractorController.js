@@ -38,7 +38,7 @@ exports.resizeUserImages = catchAsync(async (req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
       req.body.photo = `${req.protocol}://localhost:8000/${folderName}.jpeg`;
     } else if (process.env.NODE_ENV === 'production') {
-      req.body.photo = `https://iti-art-deco.herokuapp.com/${folderName}`;
+      req.body.photo = `https://iti-art-deco.herokuapp.com/${folderName}.jpeg`;
     }
 
     await sharp(req.files.photo[0].buffer)
@@ -158,28 +158,3 @@ exports.getMe = (req, res, next) => {
 exports.getContractor = factory.getOne(Contractor);
 exports.updateContractor = factory.updateOne(Contractor);
 exports.deleteContractor = factory.deleteOne(Contractor);
-
-// exports.getContractor = (req, res) => {
-//   res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
-// exports.createContractor = (req, res) => {
-//   res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
-// exports.updateContractor = (req, res) => {
-//   res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
-// exports.deleteContactor = (req, res) => {
-//   res.status(500).json({
-//     status: 'error',
-//     message: 'This route is not yet defined!',
-//   });
-// };
