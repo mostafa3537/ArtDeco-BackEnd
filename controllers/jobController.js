@@ -32,28 +32,6 @@ exports.getAllJob = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getAllJob = catchAsync(async (req, res, next) => {
-//   const jobsFilter = await Job.find({ status: 'pending' }).select(
-//     '-proposals '
-//   );
-//   const features = new APIFeatures(jobsFilter, req.query)
-//     .filter()
-//     .sort()
-//     .limitFields()
-//     .paginate();
-
-//   const jobs = await features.query;
-//   // const jobsLegnth = jobsFilter;
-//   console.log(jobsFilter);
-//   res.status(201).json({
-//     status: 'success',
-//     // results: jobsFilter.length,
-//     data: {
-//       jobs,
-//     },
-//   });
-// });
-
 //get ongoing jobs for specific contractor
 exports.getMyAllJobs = catchAsync(async (req, res, next) => {
   const contractor = await Contractor.findOne({ _id: req.contractor.id });
@@ -75,7 +53,7 @@ exports.getMyAllJobs = catchAsync(async (req, res, next) => {
   });
 });
 
-//get job by a user
+//create job by a user
 exports.createJob = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ _id: req.user.id });
 
@@ -259,28 +237,7 @@ exports.endJob = catchAsync(async (req, res, next) => {
 
 //get specific job by id
 exports.getJob = catchAsync(async (req, res, next) => {
-  let query = {};
-  if (req.user) {
-    query = {
-      user: req.user.id,
-      _id: req.params.id,
-    };
-  }
-  if (req.contractor) {
-    query = {
-      _id: req.params.id,
-    };
-  }
-  if (!req.contractor.id && req.user.id) {
-    return next(
-      new AppError('Please log in first to see the job details', 401)
-    );
-  }
-
-  const job = await Job.findOne(query).populate({
-    path: 'proposals.contractor',
-  });
-
+  const job = await Job.findOne({ _id: req.params.id });
   if (!job) {
     return next(new AppError('No job found with that ID', 404));
   }
