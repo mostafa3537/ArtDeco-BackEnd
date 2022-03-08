@@ -100,6 +100,7 @@ exports.findjobAndAddProposal = catchAsync(async (req, res, next) => {
     return next(new AppError('you have already sumbited to this job', 403));
 
   contractor.addToProposals(job._id, req.body.coverLetter);
+
   job.addToProposals(
     contractor._id,
     req.body.coverLetter,
@@ -166,6 +167,8 @@ exports.findJobAndAcceptProposalByUser = catchAsync(async (req, res, next) => {
     });
 
   if (!job) return next(new AppError(' you already choose a contractor ', 403));
+
+  await job.addToAcceptedProposal(currentProposal);
 
   await JobHistory.create({
     jobName: job.headLine,
