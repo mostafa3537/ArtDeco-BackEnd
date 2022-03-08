@@ -149,16 +149,22 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getMe = (req, res, next) => {
-  req.params.id = req.contractor.id;
+//get me --->contractor
+exports.getMe = catchAsync(async (req, res, next) => {
+  // req.params.id = req.contractor.id;
+  console.log('con');
 
-  next();
-};
+  const conractor = await Contractor.findOne({ _id: req.contractor.id });
+
+  res.status(200).json({
+    status: 'success',
+    data: conractor,
+  });
+});
 
 //get conractor profile to see by user
 exports.getContractor = catchAsync(async (req, res, next) => {
   const conractor = await Contractor.findOne({ _id: req.params.id });
-  console.log('con', conractor);
 
   res.status(200).json({
     status: 'success',

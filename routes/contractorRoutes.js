@@ -5,9 +5,11 @@ const jobController = require('../controllers/jobController');
 
 const router = express.Router();
 
+router.get('/getMe', authController.protect, contractorController.getMe);
+
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
-router.get('/logout', authController.logout);
+// router.get('/logout', authController.logout);
 
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
@@ -19,11 +21,6 @@ router.use(authController.protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
 
-router.get(
-  '/getMe',
-  contractorController.getMe,
-  contractorController.getContractor
-);
 router.patch(
   '/updateMe',
   contractorController.uploadContractorImages,
