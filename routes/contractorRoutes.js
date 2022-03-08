@@ -29,9 +29,6 @@ router.patch(
   contractorController.updateMe
 );
 
-//get ongoing jobs for specific contractor
-// router.get('/MyAllJobs', jobController.getMyAllJobs);
-
 router.delete('/deleteMe', contractorController.deleteMe);
 
 router.route('/').get(contractorController.getAllContractors);
