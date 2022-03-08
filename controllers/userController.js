@@ -94,7 +94,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 exports.getMe = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ _id: req.user.id });
 
-  // console.log(user);
   res.status(200).json({
     status: 'success',
     data: {
@@ -108,7 +107,6 @@ exports.getMyAllOngoingJobs = catchAsync(async (req, res, next) => {
 
   const { jobs } = user;
   const ongoingJobs = jobs.filter((job) => job.status === 'ongoing');
-  console.log(ongoingJobs);
   res.status(200).json({
     status: 'success',
     results: ongoingJobs.length,
@@ -135,7 +133,6 @@ exports.getMyOngoingJob = catchAsync(async (req, res, next) => {
     return next(new AppError('This job is not in ongoing status', 403));
   }
 
-  console.log('job:', currentJob);
   res.status(200).json({
     status: 'success',
     data: {

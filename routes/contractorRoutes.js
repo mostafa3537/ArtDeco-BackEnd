@@ -6,6 +6,7 @@ const jobController = require('../controllers/jobController');
 const router = express.Router();
 
 router.get('/getMe', authController.protect, contractorController.getMe);
+router.get('/MyAllJobs', authController.protect, jobController.getMyAllJobs);
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
@@ -29,7 +30,7 @@ router.patch(
 );
 
 //get ongoing jobs for specific contractor
-router.route('/MyAllJobs').get(jobController.getMyAllJobs);
+// router.get('/MyAllJobs', jobController.getMyAllJobs);
 
 router.delete('/deleteMe', contractorController.deleteMe);
 
