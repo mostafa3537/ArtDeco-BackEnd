@@ -129,7 +129,7 @@ exports.getMyOngoingJob = catchAsync(async (req, res, next) => {
     status: 'ongoing',
   })
     .select('-proposals')
-    .populate('acceptedProposal.contractor', '-Proposals');
+    .populate('acceptedProposal.contractor', '-Proposals -gallery');
 
   if (!currentJob) {
     return next(new AppError('This job is not in ongoing status', 403));
