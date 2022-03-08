@@ -232,9 +232,9 @@ exports.endJob = catchAsync(async (req, res, next) => {
     }
   );
 
-  res.status(201).json({
+  res.status(204).json({
     status: 'Success',
-    data: job,
+    data: null,
   });
 });
 
