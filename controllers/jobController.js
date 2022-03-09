@@ -7,18 +7,30 @@ const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeatures');
 const JobHistory = require('../models/jobHistoryModel');
 
-exports.getAllJob = catchAsync(async (req, res, next) => {
-  const documentLegnth = await Job.count({ status: 'pending' });
-  const features = new APIFeatures(
-    Job.find({ status: 'pending' }).select('-proposals '),
-    req.query
-  )
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 
-  console.log('documentLegnth', documentLegnth);
+exports.getAllJob = catchAsync(async (req, res, next) => {
+  let features;
+  let documentLegnth;
+
+  if (req.query.search) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+
+    documentLegnth = await Job.count({ description: regex, status: 'pending' });
+    features = new APIFeatures(
+      Job.find({ description: regex, status: 'pending' }).select('-proposals '),
+      req.query
+    ).paginate();
+  } else {
+    documentLegnth = await Job.count({ status: 'pending' });
+
+    features = new APIFeatures(
+      Job.find({ status: 'pending' }).select('-proposals '),
+      req.query
+    ).paginate();
+  }
 
   const jobs = await features.query;
 
