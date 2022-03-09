@@ -83,7 +83,7 @@ Backend:
 Frontend:
 - [Raheem Emad] (https://github.com/RaheemAmer)
 - [Abdelrahman-Ehab] (https://github.com/AbdelrahmanEhab20)
-- [Ahmed Abd-Elzaher] (https://github.com/Ahmed-AbdElzaher)
+- [Ahmed AbdElzaher] (https://github.com/Ahmed-AbdElzaher)
 - [Doaa El-Desoki] (https://github.com/DoaaEldesoki)
 
 
