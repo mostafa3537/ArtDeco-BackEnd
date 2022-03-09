@@ -27,10 +27,10 @@ Frequently viewed docs:
 
 Technologies used:
 
-- Html, jsx
-- Css, Bootrstrap, Material Ui, Tailwind css
+- Html, JSX
+- Css, Bootstrap, Material Ui, Tailwind css
 - Javascript, ES6
-- React Js and many React libraries(router-dim, axious, toastify, etc..)
+- React Js and many React libraries(router-dom, axious, toastify, etc..)
 - Node js for backend
 - No SQL mongo for database
 - Postman for API testing
