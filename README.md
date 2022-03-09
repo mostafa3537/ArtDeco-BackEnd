@@ -84,7 +84,7 @@ Frontend:
 - [Raheem Emad] (https://github.com/RaheemAmer)
 - [Abdelrahman-Ehab] (https://github.com/AbdelrahmanEhab20)
 - [Ahmed Abd-Elzaher] (https://github.com/Ahmed-AbdElzaher)
-- [Doaa ElDesoki] (https://github.com/DoaaEldesoki)
+- [Doaa El-Desoki] (https://github.com/DoaaEldesoki)
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
