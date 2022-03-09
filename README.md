@@ -22,6 +22,11 @@ Frequently viewed docs:
 - [API Reference](https://documenter.getpostman.com/view/18880020/UVkvHXu1)
 - [Outline Demo](https://docs.google.com/document/d/112AJfxMnqZGrdAdplxwxSAPYgRj9zOdP2p6x6GZXTAY/edit)
 
+## [Project]
+
+Frequently viewed docs:
+
+- [Art Deco Website](https://iti-art-deco-react.netlify.app/)
 
 
 ## [Technologies]
@@ -77,9 +82,9 @@ Backend:
 
 Frontend:
 - [Raheem Emad] (https://github.com/RaheemAmer)
-- [AbdelrahmanEhab] (https://github.com/AbdelrahmanEhab20)
+- [Abdelrahman Ehab] (https://github.com/AbdelrahmanEhab20)
 - [Ahmed Abd-Elzaher] (https://github.com/Ahmed-AbdElzaher)
-- [DoaaEldesoki] (https://github.com/DoaaEldesoki)
+- [Doaa ElDesoki] (https://github.com/DoaaEldesoki)
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
