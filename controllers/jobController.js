@@ -47,6 +47,7 @@ exports.getAllJob = catchAsync(async (req, res, next) => {
 //get ongoing jobs for specific contractor
 exports.getMyAllJobs = catchAsync(async (req, res, next) => {
   const contractor = await Contractor.findOne({ _id: req.contractor.id });
+
   const features = new APIFeatures(
     Job.find({ hiredContractor: contractor, status: 'ongoing' }),
     req.query
@@ -55,6 +56,7 @@ exports.getMyAllJobs = catchAsync(async (req, res, next) => {
     .sort()
     .limitFields()
     .paginate();
+
   const jobs = await features.query;
   res.status(201).json({
     status: 'success',

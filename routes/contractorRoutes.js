@@ -5,23 +5,23 @@ const jobController = require('../controllers/jobController');
 
 const router = express.Router();
 
+router.get('/getMe', authController.protect, contractorController.getMe);
+router.get('/MyAllJobs', authController.protect, jobController.getMyAllJobs);
+
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
-router.get('/logout', authController.logout);
+// router.get('/logout', authController.logout);
 
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
+
+router.route('/:id').get(contractorController.getContractor);
 
 // Protect all routes after this middleware
 router.use(authController.protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
 
-router.get(
-  '/getMe',
-  contractorController.getMe,
-  contractorController.getContractor
-);
 router.patch(
   '/updateMe',
   contractorController.uploadContractorImages,
@@ -30,7 +30,7 @@ router.patch(
 );
 
 //get ongoing jobs for specific contractor
-router.route('/MyAllJobs').get(jobController.getMyAllJobs);
+// router.get('/MyAllJobs', jobController.getMyAllJobs);
 
 router.delete('/deleteMe', contractorController.deleteMe);
 
@@ -38,7 +38,6 @@ router.route('/').get(contractorController.getAllContractors);
 
 router
   .route('/:id')
-  .get(contractorController.getContractor)
   .patch(contractorController.updateContractor)
   .delete(contractorController.deleteContractor);
 
