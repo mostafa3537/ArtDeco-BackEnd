@@ -133,7 +133,7 @@ exports.getMyOngoingJob = catchAsync(async (req, res, next) => {
     return next(new AppError('This job is not in ongoing status', 403));
   }
 
-  console.log('job:', currentJob);
+  // console.log('job:', currentJob);
   res.status(200).json({
     status: 'success',
     data: {
