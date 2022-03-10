@@ -16,6 +16,11 @@ router.get(
   contractorController.getContractor
 );
 
+//get ongoing jobs for specific contractor
+router
+  .route('/MyAllJobs')
+  .get(authController.protect, jobController.getMyAllJobs);
+
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -40,11 +45,6 @@ router.patch(
   contractorController.resizeUserImages,
   contractorController.updateMe
 );
-
-//get ongoing jobs for specific contractor
-router
-  .route('/MyAllJobs')
-  .get(authController.protect, jobController.getMyAllJobs);
 
 router.delete(
   '/deleteMe',
