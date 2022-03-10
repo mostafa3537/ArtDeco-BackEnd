@@ -9,6 +9,13 @@ router
   .route('/')
   .get(authController.protect, contractorController.getAllContractors);
 
+router.get(
+  '/getMe',
+  authController.protect,
+  contractorController.getMe,
+  contractorController.getContractor
+);
+
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
@@ -26,12 +33,6 @@ router.patch(
   authController.updatePassword
 );
 
-router.get(
-  '/getMe',
-  authController.protect,
-  contractorController.getMe,
-  contractorController.getContractor
-);
 router.patch(
   '/updateMe',
   authController.protect,
