@@ -151,7 +151,7 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 
 exports.getMe = (req, res, next) => {
   req.params.id = req.contractor.id;
-
+  console.log(req.contractor.id);
   next();
 };
 

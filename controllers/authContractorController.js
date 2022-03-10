@@ -86,6 +86,7 @@ exports.logout = (req, res) => {
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
+  console.log('ddd');
   // 1) Getting token and check of it's there
   let token;
   if (
@@ -126,6 +127,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // GRANT ACCESS TO PROTECTED ROUTE
   req.contractor = currentContractor;
+  console.log(currentContractor);
   next();
 });
 //restrict function for only contractor to offer the application
