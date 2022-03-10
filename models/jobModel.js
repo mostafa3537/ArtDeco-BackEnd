@@ -69,6 +69,24 @@ const jobSchema = new mongoose.Schema(
         },
       },
     ],
+    acceptedProposal: {
+      contractor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Contractor',
+      },
+      coverLetter: {
+        type: String,
+      },
+      financialOffer: {
+        type: Number,
+      },
+      estimatedTime: {
+        type: String,
+      },
+      createdAt: {
+        type: Date,
+      },
+    },
     totalProposal: {
       type: Number,
       default: 0,
@@ -109,6 +127,11 @@ jobSchema.methods.addToProposals = function (
 
   this.proposals = updatedProposalsList;
   this.totalProposal += 1;
+
+  this.save();
+};
+jobSchema.methods.addToAcceptedProposal = function (acceptedPro) {
+  this.acceptedProposal = acceptedPro;
 
   this.save();
 };

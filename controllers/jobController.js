@@ -167,6 +167,8 @@ exports.findJobAndAcceptProposalByUser = catchAsync(async (req, res, next) => {
 
   if (!job) return next(new AppError(' you already choose a contractor ', 403));
 
+  await job.addToAcceptedProposal(currentProposal);
+
   await JobHistory.create({
     jobName: job.headLine,
     rating: req.body.rating,
