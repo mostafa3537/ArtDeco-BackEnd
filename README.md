@@ -25,8 +25,9 @@ Frequently viewed docs:
 ## [Project]
 
 Frequently viewed docs:
+- [Art Deco Website - first release ](https://client-art-deco-react-g8zuh1k0p-abdallah-emam.vercel.app/)
 
-- [Art Deco Website](https://iti-art-deco-react.netlify.app/)
+- [Art Deco Website - Demo ](https://iti-art-deco-react.netlify.app/)
 
 
 ## [Technologies]
